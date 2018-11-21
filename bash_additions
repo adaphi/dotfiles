@@ -1,0 +1,16 @@
+# Overwrite the default to something nicer
+export PS1='\[\033[36m\][\u.\h] \[\033[0m\]\w$ '
+
+if [ -f ~/.git-prompt.sh ]; then
+  source ~/.git-prompt.sh
+
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWSTASHSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+  export GIT_PS1_SHOWUPSTREAM="auto legacy verbose"
+  export GIT_PS1_SHOWCOLORHINTS=1
+  export GIT_PS1_STATESEPARATOR=" "
+
+  ps1_end='\[\033[00m\]$(__git_ps1 "(%s): ")'
+  export PS1=$PS1$ps1_end
+fi

@@ -1,0 +1,36 @@
+[http]
+        sslVerify = false
+[user]
+        name = Phil Adams
+        email = adaphi@outlook.com
+[diff]
+        tool = meld
+[push]
+        default = simple
+[alias]
+        # Shorts
+        co = checkout
+        ci = commit
+        unstage = reset HEAD --
+
+        # Run arbitrary shell commands (shell commands are always executed from top-level of git repo, so useful for tools like mvn)
+        exec = "! "
+
+        # Create and push a branch from the current location
+        pr = "!f() { git branch \"$1\" && git push -u origin \"$1\"; }; f"
+
+        # Run a thing in all git directories below this one
+        foreach = "!f() { find -type d -name .git -exec echo -e \"\\n\\n$(tput smso){}$(tput rmso)\" \\; -execdir git \"$@\" \\; ; }; f"
+        fe = !git foreach
+
+        # Fetch across multiple repos
+        update = !git foreach fetch
+        upd = !git update
+
+        # General housekeeping
+        rmmerged = "!git branch --merged master | grep -v master | grep -v '^*' | xargs -r git branch -d"
+        tidy = "!git fetch --prune && git rmmerged && git gc"
+[core]
+        excludesfile = ~/.gitignore_global
+[branch]
+        autosetuprebase = always
