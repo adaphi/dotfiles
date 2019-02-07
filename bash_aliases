@@ -9,6 +9,7 @@ alias ll='ls --color=auto -l'
 alias la='ls --color=auto -la'
 alias lt='ls --color=auto -lat'
 alias lr='ls --color=auto -latr'
+alias lash='ls --color=auto -laSh'
 alias h=history
 alias ssh='ssh -t'
 alias vi='vim -X'
