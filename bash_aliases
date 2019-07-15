@@ -27,6 +27,12 @@ alias mrlf='meld'
 # Docker
 dockertls() { DOCKER_TLS_VERIFY=1 DOCKER_CERT_PATH=~/.docker/certs docker -H tcp://${1}:2376 ${@:2}; }
 
+# Dockercmd shorts
+dockercmd='docker run -ti --rm -u "$(id -u):$(id -g)" -w $(pwd) -v $(pwd):$(pwd)'
+alias dockercmd="${dockercmd}"
+alias npm="${dockercmd} -v /home/padams/.npmrc:/home/node/.npmrc node:8.10 npm"
+alias node="${dockercmd} -v /home/padams/.npmrc:/home/node/.npmrc node:8.10 node"
+
 # This makes watch respect aliases.
 # I don't even.
 alias watch='watch '
